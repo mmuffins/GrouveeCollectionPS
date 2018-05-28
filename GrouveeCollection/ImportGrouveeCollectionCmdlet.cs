@@ -11,8 +11,8 @@ namespace GrouveeCollection
 {
     /// <summary>
     /// <para type="synopsis">Imports and parses a grouvee collection .csv file.</para>
-    /// <para type="description">Imports and parses a grouvee collection .csv file which can be created</para>
-    /// <para type="description">via the 'Export your collection to a CSV file' function on grouvee.com</para>
+    /// <para type="description">Imports and parses a grouvee collection .csv file which can be created 
+    /// via the 'Export your collection to a CSV file' function on grouvee.com</para>
     /// <para type="example"></para>
     /// </summary>    
     /// <example>
