@@ -13,7 +13,15 @@ namespace GrouveeCollection
     /// <para type="synopsis">Imports and parses a grouvee collection .csv file.</para>
     /// <para type="description">Imports and parses a grouvee collection .csv file which can be created</para>
     /// <para type="description">via the 'Export your collection to a CSV file' function on grouvee.com</para>
+    /// <para type="example"></para>
     /// </summary>    
+    /// <example>
+    ///   <para>Example 1: Get child items in the current directory</para>
+    ///   <para></para>
+    ///   <code>PS C:\>Get-GrouveeCollection -Path "C:\Windows\temp\grouvee_export.csv"</code>
+    ///   <para>This command will import a grouvee file from the provided path and</para>
+    ///   <para>return a list of all games contained within it.</para>
+    /// </example>
     [Cmdlet(VerbsCommon.Get, "GrouveeCollection")]
     [OutputType(typeof(GrouveeGame))]
     public class ImportGrouveeCollectionCmdlet : Cmdlet
@@ -23,7 +31,7 @@ namespace GrouveeCollection
         /// </summary>
         [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         [Alias("path")]
-        public string FilePath { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// <para type="description">ProcessRecord Block.</para>
@@ -31,15 +39,15 @@ namespace GrouveeCollection
         protected override void ProcessRecord()
         {
             base.ProcessRecord();
-            if(!File.Exists(FilePath))
+            if(!File.Exists(Path))
             {
-                WriteError(new ErrorRecord(new ItemNotFoundException($"Cannot find path '{FilePath}' because it does not exist."), "PathNotFound", ErrorCategory.ObjectNotFound, FilePath));
+                WriteError(new ErrorRecord(new ItemNotFoundException($"Cannot find path '{Path}' because it does not exist."), "PathNotFound", ErrorCategory.ObjectNotFound, Path));
                 return;
             }
 
             try
             {
-                var collection = Task.Run(async () => await GrouveeCollectionParser.GrouveeCollection.ImportAsync(FilePath)).Result;
+                var collection = Task.Run(async () => await GrouveeCollectionParser.GrouveeCollection.ImportAsync(Path)).Result;
                 collection.ForEach(x => WriteObject(x));
             }
             catch (PipelineStoppedException)
