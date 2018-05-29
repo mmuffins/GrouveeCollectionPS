@@ -30,7 +30,7 @@ namespace GrouveeCollection
         /// <para type="description">The fully qualified or relative path to the grouvee collection .csv file.</para>
         /// </summary>
         [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
-        [Alias("path")]
+        [Alias("filepath", "filename")]
         public string Path { get; set; }
 
         /// <summary>
@@ -48,7 +48,10 @@ namespace GrouveeCollection
             try
             {
                 var collection = Task.Run(async () => await GrouveeCollectionParser.GrouveeCollection.ImportAsync(Path)).Result;
-                collection.ForEach(x => WriteObject(x));
+                foreach (var item in collection)
+                {
+                    WriteObject(item);
+                }
             }
             catch (PipelineStoppedException)
             {
