@@ -33,7 +33,7 @@ XmlDoc2CmdletDoc https://github.com/red-gate/XmlDoc2CmdletDoc
 Copyright (c) 2014-2016, Red Gate Software Ltd. All rights reserved.
 License (New BSD) https://github.com/red-gate/XmlDoc2CmdletDoc/blob/master/LICENSE.md
 
-GrouveeCollectionParser https://github.com/mmuffins/
+GrouveeCollectionParser https://github.com/mmuffins/GrouveeCollectionParser
 Copyright (c) 2018 Michael Kellner
-License (MIT) https://github.com/mmuffins/
+License (MIT) https://github.com/mmuffins/GrouveeCollectionParser/blob/master/LICENSE.md
 
