@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GrouveeCollection")]
-[assembly: AssemblyDescription("A parser for grouvee.com collection export files.")]
+[assembly: AssemblyDescription("A cmdlet to parse and import grouvee.com collection export files.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Michael Kellner")]
 [assembly: AssemblyProduct("GrouveeCollection")]
