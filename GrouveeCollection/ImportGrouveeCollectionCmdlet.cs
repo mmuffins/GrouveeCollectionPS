@@ -16,13 +16,13 @@ namespace GrouveeCollection
     /// <para type="example"></para>
     /// </summary>    
     /// <example>
-    ///   <para>Example 1: Get child items in the current directory</para>
+    ///   <para>Example 1: Import a grouvee collection csv file.</para>
     ///   <para></para>
-    ///   <code>PS C:\>Get-GrouveeCollection -Path "C:\Windows\temp\grouvee_export.csv"</code>
+    ///   <code>PS C:\>Import-GrouveeCollection -Path "C:\Windows\temp\grouvee_export.csv"</code>
     ///   <para>This command will import a grouvee file from the provided path and</para>
     ///   <para>return a list of all games contained within it.</para>
     /// </example>
-    [Cmdlet(VerbsCommon.Get, "GrouveeCollection")]
+    [Cmdlet(VerbsData.Import, "GrouveeCollection")]
     [OutputType(typeof(GrouveeGame))]
     public class ImportGrouveeCollectionCmdlet : Cmdlet
     {
