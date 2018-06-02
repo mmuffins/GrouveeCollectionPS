@@ -4,7 +4,7 @@ A powershell module that uses the [Grouvee Collection Parser library](https://gi
 
 ## Installation
 ### Automated
-Follow the instructions on [PowerShell Gallery](https://www.powershellgallery.com/packages/GrouveeCollection). Or run the following command
+Follow the instructions on [PowerShell Gallery](https://www.powershellgallery.com/packages/GrouveeCollection) or run the following command
 ```powershell
 Install-Module -Name GrouveeCollection 
 ```
