@@ -77,7 +77,19 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\XmlDoc2CmdletDoc.0.2.10\build\XmlDoc2CmdletDoc.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\XmlDoc2CmdletDoc.0.2.10\build\XmlDoc2CmdletDoc.targets'))" />
   </Target>
+  <Target Name="PostBuildMacros">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="@(Targets->'%(Version)')" />
+    </ItemGroup>
+  </Target>
   <PropertyGroup>
-    <PostBuildEvent>powershell -NoProfile -ExecutionPolicy Bypass -NonInteractive -file $(ProjectDir)PostBuild.ps1 -Psd1Path $(TargetDir)\GrouveeCollection.psd1 -ProjectPath $(ProjectPath) -AssemblyInfo $(ProjectDir)Properties\AssemblyInfo.cs -TargetFileName $(TargetFileName)</PostBuildEvent>
+    <PostBuildEventDependsOn>
+    $(PostBuildEventDependsOn);
+    PostBuildMacros;
+  </PostBuildEventDependsOn>
+    <PostBuildEvent>powershell -NoProfile -ExecutionPolicy Bypass -NonInteractive -file $(ProjectDir)PostBuild.ps1 -Psd1Path $(TargetDir)\GrouveeCollection.psd1 -ProjectPath $(ProjectPath) -AssemblyInfo $(ProjectDir)Properties\AssemblyInfo.cs -TargetFileName $(TargetFileName) -Version @(VersionNumber)</PostBuildEvent>
   </PropertyGroup>
 </Project>

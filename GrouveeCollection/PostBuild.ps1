@@ -2,7 +2,8 @@ param (
 [string]$Psd1Path,
 [string]$ProjectPath,
 [string]$AssemblyInfo,
-[string]$TargetFileName 
+[string]$TargetFileName,
+[string]$Version
 )
 
 function Get-AssemblyInformation(){
@@ -16,6 +17,7 @@ function Get-AssemblyInformation(){
 }
 
 Write-Output "Starting post-build script"
+Write-Output "for version $version"
 
 if(!(Test-Path $Psd1Path))
 {
@@ -58,6 +60,7 @@ if($assemblyInfo -eq $null)
 
 $psd1 = $psd1 -replace '%date%', ((Get-Date).tostring("dd/MM/yyyy"))
 $psd1 = $psd1 -replace '%targetfilename%', $TargetFileName
+$psd1 = $psd1 -replace '%fileversion%', $Version
 
 $assemblyReplace = @(
     @{Property='Guid'; Variable='%guid%'}
