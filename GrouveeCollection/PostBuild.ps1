@@ -12,6 +12,7 @@ function Get-AssemblyInformation(){
         [string]$PropertyName
     )
 
+    $matches = $null
     $AssemblyObject -match "assembly: $PropertyName\(`"(.*?)`"\)\]" | Out-Null
     return $matches[1]
 }
@@ -24,7 +25,7 @@ if(!(Test-Path $Psd1Path))
     exit 
 }
 
-$psd1 = Get-Content -Path $Psd1Path
+$psd1 = Get-Content -Path $Psd1Path -Encoding UTF8
 if($psd1 -eq $null)
 {
     Write-Error "Could not read file $Psd1Path ."
@@ -72,6 +73,9 @@ $assemblyReplace = @(
 
 foreach ($item in $assemblyReplace) {
     $newProp = Get-AssemblyInformation -AssemblyObject $AssemblyInfo -PropertyName $item.Property
+    if($item.Property -eq "AssemblyCopyright"){
+        $newProp = $newProp -replace [char]0x00A9, "(c)"
+    }
     $psd1 = $psd1 -replace $item.Variable, $newProp
 
 }
