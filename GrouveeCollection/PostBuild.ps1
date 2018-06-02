@@ -16,8 +16,7 @@ function Get-AssemblyInformation(){
     return $matches[1]
 }
 
-Write-Output "Starting post-build script"
-Write-Output "for version $version"
+Write-Output "Generating module manifest"
 
 if(!(Test-Path $Psd1Path))
 {
